@@ -37,7 +37,6 @@ export default {
       const dataRes = await res.json();
       data.weather = dataRes;
     };
-      console.log(data.weather);
 
     return {
       data,
