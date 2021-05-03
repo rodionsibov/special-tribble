@@ -8,24 +8,21 @@
         type="text"
         placeholder="Enter a city"
       />
-      <div v-if="data.weather" class="weather">
-        <h1>
-          {{ Math.round(data.weather.main.temp - 273.15) }}
-          &deg;
-        </h1>
-        <h2>
-          {{ data.weather.weather[0].main }}
-        </h2>
-        <h3>
-          {{ data.weather.weather[0].description }}
-        </h3>
-      </div>
+    </div>
+    <div v-if="data.weather" class="weather">
+      <h1>{{ Math.round(data.weather.main.temp - 273.15) }}&deg;</h1>
+      <h2>
+        {{ data.weather.weather[0].main }}
+      </h2>
+      <h3>
+        {{ data.weather.weather[0].description }}
+      </h3>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 
 export default {
   setup() {
@@ -35,12 +32,12 @@ export default {
     });
 
     const apiUrl = "http://localhost:3000/";
-
     const getWeather = async () => {
       const res = await fetch(`${apiUrl}?q=${data.city}`);
       const dataRes = await res.json();
       data.weather = dataRes;
     };
+      console.log(data.weather);
 
     return {
       data,
